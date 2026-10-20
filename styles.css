@@ -1,0 +1,260 @@
+:root{
+  --bg:#090b16;--card:#14182e;--card2:#1c2242;--tx:#f4f6ff;--mu:#8f98c9;
+  --ac:#ffb020;--ok:#10b981;--no:#f43f5e;--pu:#7c5cff;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;scrollbar-width:none}
+*::-webkit-scrollbar{display:none}
+body{margin:0;background:radial-gradient(circle at 50% 0%,var(--card2) 0%,var(--bg) 75%);color:var(--tx);font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;min-height:100vh;overflow-x:hidden}
+#app{max-width:540px;margin:auto;padding:12px 14px 110px}
+h1,h2,.gfont{font-family:'Chakra Petch',system-ui,sans-serif;letter-spacing:.3px}
+h1{margin:6px 0 4px;font-size:25px;text-transform:uppercase;text-shadow:0 2px 10px rgba(0,0,0,.5)}
+h2{margin:0;font-size:18px;line-height:1.35}
+.mu{color:var(--mu)}.row{display:flex;justify-content:space-between;align-items:center;margin:8px 0;gap:8px}
+.ic{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;line-height:1}
+.ic svg{width:1.2em;height:1.2em;vertical-align:-0.18em;filter:drop-shadow(0 2px 3px rgba(0,0,0,.35))}
+
+/* Tarjetas y Contenedores Gamer */
+.card{background:linear-gradient(165deg,var(--card2) 0%,var(--card) 100%);border-radius:18px;padding:14px;margin:10px 0;border:1px solid rgba(255,255,255,.1);box-shadow:0 10px 24px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.12);position:relative;overflow:hidden}
+.card.locked{opacity:.68;filter:grayscale(.35);border-style:dashed}
+.bar{height:11px;background:rgba(0,0,0,.55);border-radius:9px;overflow:hidden;margin:6px 0;border:1px solid rgba(255,255,255,.08);box-shadow:inset 0 2px 4px rgba(0,0,0,.6)}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--pu),var(--ac));border-radius:9px;transition:width .25s cubic-bezier(.4,0,.2,1);box-shadow:0 0 10px var(--ac)}
+.m{display:flex;justify-content:space-between;align-items:center;font-size:13px;margin-top:8px;gap:8px}
+
+/* Botones con volumen 3D táctil */
+button{font:inherit;color:var(--tx);border:0;cursor:pointer;transition:transform .08s,filter .15s,box-shadow .12s}
+button:hover{filter:brightness(1.08)}
+button:active{transform:translateY(3px)!important}
+.go{width:100%;padding:14px 16px;font-family:'Chakra Petch',sans-serif;font-size:19px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;border-radius:16px;background:linear-gradient(135deg,var(--pu),var(--ac));color:#fff;text-shadow:0 2px 4px rgba(0,0,0,.45);margin-top:8px;border:1px solid rgba(255,255,255,.28);box-shadow:0 5px 0 rgba(0,0,0,.45),0 10px 20px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.4)}
+.go.big{padding:15px 8px;font-size:15px;line-height:1.25}
+.sec{background:linear-gradient(180deg,var(--card2),var(--card));padding:11px 14px;border-radius:13px;width:100%;margin-top:8px;font-weight:700;border:1px solid rgba(255,255,255,.14);box-shadow:0 4px 0 rgba(0,0,0,.4),0 6px 12px rgba(0,0,0,.25)}
+.sec.act{background:linear-gradient(135deg,var(--ac),#ff7b00);color:#111;text-shadow:none;border-color:#fff6}
+.pw{background:rgba(255,255,255,.07);border-radius:11px;padding:7px 11px;font-size:12px;font-weight:700;color:var(--tx);border:1px solid rgba(255,255,255,.16);box-shadow:0 3px 0 rgba(0,0,0,.35);display:inline-flex;align-items:center;gap:5px}
+
+/* Opciones de respuesta */
+.op{display:block;position:relative;width:100%;min-width:0;text-align:left;white-space:normal;overflow-wrap:anywhere;word-break:normal;line-height:1.55;background:linear-gradient(165deg,var(--card2),var(--card));padding:15px 16px;border-radius:14px;margin:9px 0;font-size:14px;font-weight:650;border:1px solid rgba(148,197,225,.22);box-shadow:0 4px 0 rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.05);color:var(--tx);min-height:52px}
+.op:disabled{opacity:1;cursor:default}
+.op:not(:disabled):hover{border-color:rgba(125,211,252,.6);filter:brightness(1.12);transform:translateY(-1px)}
+.op.ok{border:1px solid rgba(16,185,129,.75);background:linear-gradient(165deg,#0f3d2e,#09261d);box-shadow:0 4px 0 rgba(0,0,0,.3),0 0 12px rgba(16,185,129,.14)}
+.op.bad{border:1px solid rgba(244,63,94,.75);background:linear-gradient(165deg,#4c1324,#2b0914);box-shadow:0 4px 0 rgba(0,0,0,.3),0 0 12px rgba(244,63,94,.14)}
+/* Legibilidad consistente para respuestas, incluso en pantallas pequeñas */
+.op b,.op strong{display:inline-block;margin-right:4px}
+.op br{display:block;content:"";margin-top:4px}
+.op.ok{border-color:var(--ok);background:linear-gradient(165deg,#0f3d2e,#09261d);box-shadow:0 0 15px rgba(16,185,129,.35)}
+.op.bad{border-color:var(--no);background:linear-gradient(165deg,#4c1324,#2b0914);box-shadow:0 0 15px rgba(244,63,94,.35)}
+
+
+/* Preguntas y alternativas: tarjetas legibles y separadas */
+#game .card h2{line-height:1.5;overflow-wrap:anywhere}
+#game .card small{line-height:1.6}
+#game .op{font-size:clamp(13px,3.5vw,15px);letter-spacing:0;line-height:1.6}
+#game .op + .op{margin-top:10px}
+\n/* HUD Superior */
+.top{display:flex;gap:6px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:8px}
+.chip{background:rgba(20,24,46,.88);backdrop-filter:blur(8px);border-radius:99px;padding:5px 11px 5px 7px;font-size:12px;font-weight:700;display:inline-flex;gap:6px;align-items:center;color:var(--tx);border:1px solid rgba(255,255,255,.15);box-shadow:0 4px 10px rgba(0,0,0,.25)}
+.av-mini{width:26px;height:26px;border-radius:50%;overflow:hidden;display:inline-flex;border:1.5px solid var(--ac);background:#000}
+.av-mini svg{width:100%;height:100%}
+
+/* Hero y Escenario 3D */
+.hero{background:linear-gradient(170deg,var(--card2) 0%,#080a14 100%);border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:12px;text-align:center;margin:8px 0 12px;box-shadow:0 14px 32px rgba(0,0,0,.5)}
+.stage3d{position:relative;width:100%;height:235px;border-radius:16px;overflow:hidden;background:radial-gradient(circle at 50% 25%,#232d5e 0%,#070913 100%);border:1px solid rgba(255,255,255,.18);margin-bottom:10px;touch-action:none;user-select:none;box-shadow:inset 0 0 30px rgba(0,0,0,.7)}
+.stage3d.duel-stage{height:165px;margin-bottom:8px}
+.stage3d canvas{width:100%;height:100%;display:block;cursor:grab}
+.stage3d canvas:active{cursor:grabbing}
+.badge3d{position:absolute;top:8px;left:8px;background:rgba(9,11,22,.82);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.22);padding:5px 11px;border-radius:99px;font-family:'Chakra Petch',sans-serif;font-size:11px;font-weight:800;color:var(--ac);pointer-events:none;display:inline-flex;align-items:center;gap:6px;text-transform:uppercase;box-shadow:0 4px 12px rgba(0,0,0,.4)}
+.avatar-hud3d{position:absolute;top:8px;right:8px;width:52px;height:52px;border-radius:14px;border:2px solid var(--ac);overflow:hidden;box-shadow:0 6px 16px rgba(0,0,0,.6);background:#0a0d1a;pointer-events:none}
+.avatar-hud3d svg{width:100%;height:100%;display:block}
+.cam-btn{position:absolute;bottom:7px;left:8px;background:rgba(9,11,22,.85);border:1px solid var(--ac);padding:4px 10px;border-radius:99px;font-size:11px;font-weight:700;color:var(--tx);z-index:2}
+.hint3d{position:absolute;bottom:7px;right:8px;background:rgba(9,11,22,.75);border:1px solid rgba(255,255,255,.12);padding:3px 9px;border-radius:99px;font-size:10px;color:var(--mu);pointer-events:none}
+
+/* Tarjeta Guiada "Tu Siguiente Paso" */
+.quest-box{background:linear-gradient(135deg,rgba(124,92,255,.25) 0%,rgba(255,176,32,.18) 100%);border:2px solid var(--ac);border-radius:20px;padding:14px;margin:10px 0;box-shadow:0 0 25px rgba(255,176,32,.2)}
+.step-pill{background:var(--ac);color:#111;font-family:'Chakra Petch',sans-serif;font-size:11px;font-weight:800;padding:2px 9px;border-radius:99px;text-transform:uppercase}
+
+/* Línea de Tiempo de Carrera Unificada */
+.stage-node{border-left:3px solid var(--pu);margin-left:10px;padding-left:14px;position:relative;margin-bottom:14px}
+.stage-node::before{content:'';position:absolute;left:-9px;top:14px;width:14px;height:14px;border-radius:50%;background:var(--pu);border:2px solid #fff}
+.stage-node.done{border-left-color:var(--ok)}.stage-node.done::before{background:var(--ok)}
+.stage-node.curr{border-left-color:var(--ac)}.stage-node.curr::before{background:var(--ac);box-shadow:0 0 12px var(--ac)}
+.stage-node.lock{border-left-color:#334155}.stage-node.lock::before{background:#334155;border-color:#64748b}
+
+/* Grillas y Carruseles */
+.gr{display:grid;grid-template-columns:1fr 1fr;gap:9px}.gr .op,.gr .sec{margin:0;text-align:center}
+.gr3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}.mc{margin:0;padding:8px 4px;min-height:86px;font-size:12px;text-align:center}
+.gr4{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}.gr4 .sec{margin:0;padding:8px 2px;font-size:15px;text-align:center}
+.chips{display:flex;gap:7px;overflow-x:auto;padding:4px 2px 8px;scroll-snap-type:x mandatory}
+.chips .sec{width:auto;white-space:nowrap;margin:0;padding:9px 14px;scroll-snap-align:start;font-size:13px}
+.tile{margin:0;padding:12px 6px;font-size:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;border-radius:15px;position:relative}
+.tile .t-ic{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:20px;border:1px solid rgba(255,255,255,.1)}
+.lock-badge{position:absolute;top:5px;right:5px;background:rgba(0,0,0,.75);color:var(--mu);font-size:9px;padding:2px 6px;border-radius:6px;border:1px solid #fff2}
+
+/* Vitrina de Skins y Tarjetas de Rareza */
+.skin-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.skin-card{background:linear-gradient(165deg,#1d2346,#0f1329);border-radius:18px;padding:10px;text-align:center;border:2px solid rgba(255,255,255,.12);position:relative;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.4);display:flex;flex-direction:column;align-items:center}
+.skin-card.r-epic{border-color:#a855f7;box-shadow:0 0 18px rgba(168,85,247,.25)}
+.skin-card.r-leg{border-color:#f59e0b;box-shadow:0 0 22px rgba(245,158,11,.3)}
+.skin-card.r-myth{border-color:#00e5ff;box-shadow:0 0 24px rgba(0,229,255,.35)}
+.skin-art{width:100%;aspect-ratio:1/1;max-width:125px;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.18);margin:4px 0 8px;box-shadow:0 6px 14px rgba(0,0,0,.45)}
+.skin-art svg{width:100%;height:100%;display:block}
+.r-tag{font-family:'Chakra Petch',sans-serif;font-size:10px;font-weight:800;text-transform:uppercase;padding:2px 8px;border-radius:99px;letter-spacing:.6px;margin-bottom:4px}
+.r-com .r-tag{background:#334155;color:#e2e8f0}
+.r-rare .r-tag{background:#0284c7;color:#e0f2fe}
+.r-epic .r-tag{background:#7e22ce;color:#f3e8ff}
+.r-leg .r-tag{background:linear-gradient(90deg,#d97706,#fbbf24);color:#111}
+.r-myth .r-tag{background:linear-gradient(90deg,#06b6d4,#ec4899);color:#fff}
+
+/* Battle Pass Horizontal Pro */
+.bp-banner{background:linear-gradient(135deg,#2a1b54 0%,#141833 55%,#3d2610 100%);border:2px solid var(--ac);border-radius:20px;padding:14px;margin:10px 0;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.bp-track{display:flex;gap:12px;overflow-x:auto;padding:12px 4px 16px;scroll-snap-type:x mandatory}
+.bp-node{min-width:146px;max-width:146px;background:linear-gradient(170deg,#1f264d,#11152c);border-radius:16px;padding:10px;border:2px solid rgba(255,255,255,.12);scroll-snap-align:center;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;box-shadow:0 8px 18px rgba(0,0,0,.4)}
+.bp-node.unlk{border-color:var(--ok);box-shadow:0 0 16px rgba(16,185,129,.25)}
+.bp-node.gold-t{border-color:var(--ac);background:linear-gradient(170deg,#332414,#161324);box-shadow:0 0 20px rgba(255,176,32,.3)}
+.bp-lv{font-family:'Chakra Petch',sans-serif;font-size:11px;font-weight:800;background:rgba(0,0,0,.55);padding:2px 9px;border-radius:99px;border:1px solid rgba(255,255,255,.18);margin-bottom:6px}
+.bp-box{width:76px;height:76px;border-radius:14px;background:radial-gradient(circle,rgba(255,255,255,.14),rgba(0,0,0,.35));display:flex;align-items:center;justify-content:center;margin:4px 0 8px;border:1px solid rgba(255,255,255,.14);overflow:hidden}
+.bp-box svg{width:100%;height:100%}
+
+/* Barra de Navegación Inferior Flotante (5 Pestañas Claras) */
+#nav{position:fixed;left:8px;right:8px;bottom:8px;max-width:524px;margin:auto;display:flex;background:rgba(14,18,36,.95);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:6px 4px;z-index:4;box-shadow:0 10px 30px rgba(0,0,0,.7)}
+#nav[hidden]{display:none}
+#nav button{flex:1;background:none;color:var(--mu);font-size:10px;font-weight:700;padding:5px 2px;display:flex;flex-direction:column;align-items:center;gap:3px;border-radius:12px}
+#nav button.nav-on{color:var(--ac);background:rgba(255,176,32,.14)}
+
+/* Efectos de combate y estados */
+.gold{background:linear-gradient(90deg,#b8860b,var(--ac));color:#111;font-weight:800;text-align:center;border-radius:10px;padding:6px;margin:6px 0;animation:p .8s infinite alternate}
+@keyframes p{to{transform:scale(1.03)}}
+.fb{background:var(--card);border-radius:14px;padding:12px;margin-top:6px;font-size:14px;line-height:1.45;animation:u .2s;border:1px solid rgba(255,255,255,.16)}
+@keyframes u{from{transform:translateY(10px);opacity:0}}
+.big{font-family:'Chakra Petch',sans-serif;font-size:42px;text-align:center;margin:6px 0;font-weight:800}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:8px}.hp{height:13px;background:#0008;border-radius:9px;overflow:hidden;position:relative;border:1px solid #fff2}
+.hp u{position:absolute;top:0;bottom:0;left:0;background:#fff;opacity:.85;transition:width .6s ease .5s}.hp.e u{left:auto;right:0}
+.hp i{display:block;height:100%;background:linear-gradient(90deg,#059669,#34d399);position:relative;z-index:1}.hp.e i{background:linear-gradient(90deg,#e11d48,#fb7185);margin-left:auto}
+@keyframes sh{0%{transform:translate(0)}15%{transform:translate(-14px,4px) rotate(-1.2deg)}30%{transform:translate(12px,-4px) rotate(1deg)}45%{transform:translate(-10px,2px)}60%{transform:translate(8px,-2px)}80%{transform:translate(-4px,0)}100%{transform:translate(0)}}.shake{animation:sh .45s}
+@keyframes pop{50%{transform:scale(1.04)}}.pop{animation:pop .25s}
+.fire{font-size:20px;display:inline-block;text-shadow:0 0 12px #ff7a00;animation:tr .15s infinite}@keyframes tr{25%{transform:translate(2px,-2px) rotate(2deg)}75%{transform:translate(-2px,2px) rotate(-2deg)}}
+.sunat{background:#5a0f1a;border:2px solid var(--no);animation:p .4s 3}
+.cf{position:fixed;inset:0;z-index:9;background:#000c;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:28px;text-align:center;padding:20px;color:#fff}.cf i{position:fixed;top:-30px;font-style:normal;animation:fall 2.4s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(540deg)}}
+#hud{position:relative}.fct{position:absolute;top:6px;font-weight:900;font-size:28px;color:#ff4d6d;text-shadow:0 2px 6px #000;pointer-events:none;animation:fl 1s ease-out forwards;z-index:5}@keyframes fl{to{transform:translateY(-48px);opacity:0}}
+body.hs{filter:brightness(1.3) saturate(1.4)}body.hs *{pointer-events:none}
+body.vg::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:5;box-shadow:inset 0 0 90px 24px rgba(255,110,0,.55);animation:vg 1s ease-in-out infinite alternate}@keyframes vg{from{opacity:.35}to{opacity:1}}
+.doc-box{background:#f7f8fc;color:#141829;border-radius:12px;padding:12px;margin:8px 0;font-family:"Courier New",monospace;font-size:12px;border-left:5px solid var(--ac);box-shadow:inset 0 0 0 1px #d0d5e8}
+.doc-box b{color:#0b2559}.doc-hdr{display:flex;justify-content:space-between;border-bottom:1px dashed #8c96b5;padding-bottom:6px;margin-bottom:6px;font-weight:700}
+.manual-sec{background:#0e1226;border-left:4px solid var(--ac);padding:10px 12px;border-radius:10px;margin:8px 0;font-size:13px;line-height:1.5}
+.manual-sec code{background:#ffffff14;padding:1px 5px;border-radius:4px;color:var(--ac);font-weight:700}
+
+/* ================= EVENTO ÉPICO DE FISCALIZACIÓN + AIMTRAINER.IO ================= */
+.fisc-ov{position:fixed;inset:0;z-index:25;background:radial-gradient(circle at 50% 40%,rgba(20,24,46,.96),rgba(5,6,12,.99));display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;text-align:center;animation:fiscIn .28s cubic-bezier(.16,1,.3,1)}
+@keyframes fiscIn{from{opacity:0;transform:scale(1.25)}to{opacity:1;transform:scale(1)}}
+.fisc-banner{width:100%;max-width:480px;border-radius:24px;padding:18px 16px;border:3px solid var(--fcol,#f43f5e);background:linear-gradient(165deg,rgba(255,255,255,.08),rgba(10,12,24,.95));box-shadow:0 0 55px var(--fcol,#f43f5e),inset 0 0 25px rgba(255,255,255,.12);position:relative;overflow:hidden;animation:bannerSlam .45s cubic-bezier(.22,1.35,.36,1)}
+@keyframes bannerSlam{0%{transform:translateY(-90px) scale(.7);opacity:0}70%{transform:translateY(8px) scale(1.04)}100%{transform:translateY(0) scale(1);opacity:1}}
+.fisc-crest{width:90px;height:90px;margin:0 auto 8px;border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:46px;background:radial-gradient(circle,var(--fcol,#f43f5e),#090b16 85%);border:3px solid #fff;box-shadow:0 0 30px var(--fcol,#f43f5e);animation:crestPulse 1s infinite alternate}
+@keyframes crestPulse{to{transform:scale(1.08) rotate(-3deg);box-shadow:0 0 45px #fff}}
+.fisc-title{font-family:'Chakra Petch',sans-serif;font-size:26px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#fff;text-shadow:0 4px 15px var(--fcol,#f43f5e);margin:4px 0}
+.fisc-sub{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--fcol,#f43f5e);background:rgba(0,0,0,.6);padding:4px 12px;border-radius:99px;display:inline-block;margin-bottom:6px;border:1px solid var(--fcol,#f43f5e)}
+.sh-clash{width:105px;height:105px;margin:10px auto;border-radius:50%;background:radial-gradient(circle,#38bdf8,#0284c7 70%);border:4px solid #e0f2fe;display:flex;align-items:center;justify-content:center;font-size:50px;box-shadow:0 0 60px #00e5ff,0 0 110px #38bdf8;animation:shieldSlam .55s cubic-bezier(.17,.89,.32,1.49)}
+@keyframes shieldSlam{0%{transform:scale(2.6);opacity:0}60%{transform:scale(.88)}100%{transform:scale(1);opacity:1}}
+
+/* Arena estilo AimTrainer.io (Objetivos crecen y se esconden rápido) */
+.aim-arena{position:relative;width:100%;height:250px;background:radial-gradient(circle at 50% 50%,#1b2347 0%,#070914 100%);border:2px solid rgba(255,255,255,.22);border-radius:18px;margin:8px 0;overflow:hidden;cursor:crosshair;box-shadow:inset 0 0 35px rgba(0,0,0,.9);touch-action:none;user-select:none}
+.aim-target{position:absolute;width:64px;height:64px;margin-left:-32px;margin-top:-32px;border-radius:50%;background:radial-gradient(circle,#fff 12%,#fde047 28%,#f97316 62%,#e11d48 95%);border:2.5px solid #fff;box-shadow:0 0 20px #f43f5e;cursor:pointer;transform:scale(0);animation:aimTrainer var(--adur,1.35s) ease-in-out forwards}
+.aim-target::after{content:'';position:absolute;inset:14px;border-radius:50%;border:2px dashed rgba(255,255,255,.75)}
+@keyframes aimTrainer{0%{transform:scale(0);opacity:.4}45%{transform:scale(1.12);opacity:1}100%{transform:scale(0);opacity:0}}
+/* Identificadores visuales A/B/C/D en cuestionarios compatibles */
+.op[data-choice]::before{content:attr(data-choice);display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;width:25px;height:25px;flex:0 0 25px;margin-right:10px;border-radius:8px;background:rgba(125,211,252,.12);border:1px solid rgba(125,211,252,.25);color:#bae6fd;font-size:12px;font-weight:800}
+.op[data-choice].ok::before{background:rgba(16,185,129,.18);color:#a7f3d0;border-color:rgba(16,185,129,.4)}
+.op[data-choice].bad::before{background:rgba(244,63,94,.18);color:#fecdd3;border-color:rgba(244,63,94,.4)}
+
+/* Mi CV: niveles desplegables y ranking competitivo */
+.stage-detail summary{list-style:none}
+.stage-detail summary::-webkit-details-marker{display:none}
+.stage-detail summary::after{content:'＋';float:right;color:var(--ac);font-weight:900}
+.stage-detail[open] summary::after{content:'−'}
+.stage-detail[open]{border-color:rgba(125,211,252,.35)!important}
+
+
+/* Cuenta Rush v11: identidad de perfil, carrera realista y economía visual */
+.cv-identity-hero{position:relative;overflow:hidden;margin:10px 0 14px;padding:16px;border-radius:22px;border:1px solid rgba(125,211,252,.38);background:radial-gradient(circle at 90% 0%,rgba(45,212,191,.22),transparent 38%),linear-gradient(145deg,#123a50,#0a1d2d 75%);box-shadow:0 14px 32px #0006,inset 0 1px 0 #ffffff24}
+.cv-identity-hero:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,transparent 30%,#ffffff08 48%,transparent 62%)}
+.cv-identity-top{display:flex;align-items:center;gap:13px;position:relative;z-index:1}
+.cv-avatar{width:78px;height:78px;flex:0 0 78px;border-radius:20px;padding:3px;background:linear-gradient(145deg,#facc15,#22d3ee,#8b5cf6);box-shadow:0 8px 18px #0007,0 0 18px #22d3ee35;transform:perspective(500px) rotateY(-7deg)}
+.cv-avatar svg{width:100%;height:100%;display:block;border-radius:16px}
+.cv-identity-main{min-width:0;flex:1}
+.cv-kicker{font-size:10px;font-weight:900;letter-spacing:1.4px;color:#8be9ff}
+.cv-nickname{font-family:'Chakra Petch',sans-serif;font-size:clamp(23px,6vw,32px);font-weight:900;line-height:1.08;overflow-wrap:anywhere;text-shadow:0 3px 12px #0008;margin:4px 0}
+.cv-title{font-size:13px;font-weight:800;color:#fcd978;overflow-wrap:anywhere}
+.cv-settings{width:42px;height:42px;flex:0 0 42px;border-radius:14px;background:linear-gradient(145deg,#263f55,#0b2030);border:1px solid #ffffff35;box-shadow:0 4px 0 #0007,inset 0 1px 0 #ffffff1c;font-size:23px;color:#d8f7ff}
+.cv-rankline{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin:15px 0 8px}
+.cv-level{font-family:'Chakra Petch',sans-serif;font-size:19px;font-weight:900}
+.cv-league{display:inline-flex;align-items:center;gap:5px;border-radius:99px;background:#080f20a8;border:1px solid #ffffff22;padding:6px 10px;font-size:12px;font-weight:800;white-space:nowrap}
+.cv-xpline{display:flex;justify-content:space-between;gap:8px;font-size:11px;color:#b8cde7;font-weight:700}
+.cv-xpbar{height:9px;background:#050b15;margin:6px 0 9px}.cv-xpbar i{background:linear-gradient(90deg,#0ea5e9,#2dd4bf,#fde68a)}
+.cv-description{display:block;color:#b6c9e2;line-height:1.5}
+.cv-settings-panel{border:1px solid rgba(45,212,191,.42)}
+.cv-label{display:block;font-size:12px;font-weight:800;color:#b8d8ef;margin:12px 0 5px}
+.cv-settings-panel input,.cv-settings-panel select{width:100%;min-width:0;padding:12px;border-radius:10px;background:#071927;color:var(--tx);border:1px solid #ffffff28;font:inherit}
+.career-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #ffffff0e}
+.career-row:last-of-type{border-bottom:0}
+.career-dot{width:27px;height:27px;display:flex;align-items:center;justify-content:center;flex:0 0 27px;border-radius:50%;font-size:12px;font-weight:900;background:#20384b;border:1px solid #ffffff20;color:#d6e8fa}
+.career-current{background:linear-gradient(90deg,#2dd4bf14,transparent);border-radius:10px;padding-left:8px;padding-right:8px;border:1px solid #2dd4bf40}
+.career-current .career-dot{background:linear-gradient(135deg,#0ea5e9,#2dd4bf);color:#06202b;border:0}
+.career-time{font-size:11px;font-weight:800;white-space:nowrap;color:#8be9ff;text-align:right}
+.career-disclaimer{margin-top:12px;padding:11px;border-radius:12px;background:#6b4a101e;border:1px solid #fbbf2445;color:#f8d995;font-size:12px;line-height:1.55}
+.season-help{margin-top:10px;border-radius:12px;background:#ffffff08;border:1px solid #ffffff13;overflow:hidden}
+.season-help summary{cursor:pointer;padding:11px 12px;font-weight:800;list-style:none}
+.season-help summary::-webkit-details-marker{display:none}
+.season-help summary:after{content:'＋';float:right;color:var(--ac)}
+.season-help[open] summary:after{content:'−'}
+.season-help-body{padding:0 12px 12px;line-height:1.55}
+/* Asientos contables dentro de las alternativas, en vez de una frase corrida */
+.op-account{padding:9px!important}
+.entry-choice{display:block;border-radius:10px;background:linear-gradient(145deg,#071b29,#102f40);border:1px solid #5aa8c344;padding:10px 11px;box-shadow:inset 0 1px 0 #ffffff0d;text-align:left}
+.entry-choice-label{font-size:9px;letter-spacing:1.2px;font-weight:900;color:#7dd3fc;margin-bottom:6px}
+.entry-choice-text{font-size:13px;line-height:1.65;overflow-wrap:anywhere}
+.entry-side{display:inline-block;padding:2px 6px;border-radius:5px;font-size:10px;letter-spacing:.7px;font-weight:900;margin:1px 2px 1px 0}
+.entry-debe{background:#075985;color:#bae6fd;border:1px solid #38bdf866}
+.entry-haber{background:#065f46;color:#a7f3d0;border:1px solid #34d39966}
+.entry-divider{color:#94a3b8;font-weight:900;margin:0 3px}
+/* Las skins tienen presentación de vitrina con perspectiva, volumen, luz y rareza */
+.skin-card{transform:perspective(850px) rotateX(1deg);transform-style:preserve-3d;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.skin-card:hover{transform:perspective(850px) rotateY(-3deg) translateY(-3px);box-shadow:0 15px 30px #0008,0 0 20px #22d3ee22}
+.skin-art{position:relative;isolation:isolate;transform:perspective(500px) rotateY(-4deg) translateZ(8px);box-shadow:8px 9px 0 #02061755,0 0 18px #22d3ee16,inset 0 0 0 1px #ffffff28}
+.skin-art:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,#ffffff30 0%,transparent 28%,transparent 68%,#0005 100%);mix-blend-mode:screen}
+.skin-art svg{filter:drop-shadow(0 5px 4px #0006);transform:scale(1.025)}
+@media(max-width:380px){.cv-avatar{width:64px;height:64px;flex-basis:64px}.cv-settings{width:38px;height:38px;flex-basis:38px}.career-time{font-size:10px}.entry-choice-text{font-size:12px}}
+
+.frame-shop-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:10px 0}
+.frame-shop-card{min-width:0;padding:12px 9px;border-radius:16px;text-align:center;background:linear-gradient(150deg,#16384a,#0b1a29);border:1px solid #ffffff18;box-shadow:0 7px 16px #0005,inset 0 1px 0 #ffffff12;display:flex;flex-direction:column;align-items:center;gap:7px}
+.frame-shop-art{width:74px;height:74px;filter:drop-shadow(0 7px 7px #0008);transform:perspective(400px) rotateY(-8deg)}
+.frame-shop-art svg{width:100%;height:100%}
+.frame-shop-card b{font-size:13px;min-height:32px;display:flex;align-items:center;justify-content:center}
+.frame-shop-card button{margin-top:auto;font-size:12px;padding:8px 6px}
+.economy-note{border-color:#fbbf2440;background:linear-gradient(145deg,#4b35171c,#0e2635)}
+.cv-avatar.frame-neon{background:linear-gradient(145deg,#22d3ee,#8b5cf6);box-shadow:0 0 0 2px #22d3ee,0 0 22px #22d3ee65}
+.cv-avatar.frame-emerald{background:linear-gradient(145deg,#6ee7b7,#047857);box-shadow:0 0 0 2px #6ee7b7,0 0 22px #10b98155}
+.cv-avatar.frame-royal{background:linear-gradient(145deg,#fde68a,#b45309);box-shadow:0 0 0 2px #fde68a,0 0 22px #f59e0b55}
+.cv-avatar.frame-void{background:linear-gradient(145deg,#c4b5fd,#4c1d95);box-shadow:0 0 0 2px #c4b5fd,0 0 22px #8b5cf655}
+.cv-avatar.frame-cosmic{background:linear-gradient(145deg,#f0abfc,#0ea5e9,#7c3aed);box-shadow:0 0 0 2px #f0abfc,0 0 24px #c026d355}
+
+/* Mobile-first 3D controls */
+#cvHome3D,#cvDuel3D{touch-action:none;max-width:100%;}
+@media(max-width:600px){
+  .stage3d{min-height:260px;overflow:hidden}
+  #cvHome3D{height: min(62vh,420px);min-height:280px;width:100%;}
+  #cvDuel3D{height:300px;width:100%;}
+  #nav{overflow-x:auto;grid-template-columns:repeat(6,minmax(64px,1fr));}
+  #nav button{font-size:10px;padding:8px 4px;white-space:nowrap;}
+  .card{padding:12px;}
+  button{min-height:42px;}
+}
+
+/* v15: visual debit/credit ledger cards */
+.entry-ledger{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:7px;text-align:left}
+.entry-col{min-width:0;border:1px solid #ffffff18;border-radius:8px;overflow:hidden;background:#071b29aa}
+.entry-col-head{font-size:11px;font-weight:900;letter-spacing:.8px;text-align:center;padding:7px 4px}
+.entry-debit-col .entry-col-head{background:#0e7490;color:#cffafe}
+.entry-credit-col .entry-col-head{background:#047857;color:#d1fae5}
+.entry-line{padding:7px 8px;font-size:12px;line-height:1.35;overflow-wrap:anywhere;border-top:1px solid #ffffff12}
+.entry-empty{padding:8px;text-align:center;color:#8296a9}
+.op-account{padding:8px!important}
+.op-account .entry-choice{padding:5px;border:0;box-shadow:none;background:transparent}
+.op-account .entry-choice-label{display:none}
+@media(max-width:420px){.entry-ledger{gap:5px}.entry-line{font-size:11px;padding:6px 5px}.entry-col-head{font-size:10px}}
